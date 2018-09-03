@@ -7,7 +7,7 @@ def test():
     policy = ActorCritic()
     policy.load_state_dict(torch.load('./preTrained/LunarLander TWO.pth'))
     render = True
-    save_gif = True
+    save_gif = False
 
     for i_episode in range(1, 10):
         state = env.reset()
