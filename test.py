@@ -2,10 +2,11 @@ from model import ActorCritic
 import torch
 import gym
 from PIL import Image
+
 def test():
     env = gym.make('LunarLander-v2')
     policy = ActorCritic()
-    policy.load_state_dict(torch.load('./preTrained/LunarLander TWO.pth'))
+    policy.load_state_dict(torch.load('./preTrained/LunarLander.pth'))
     render = True
     save_gif = False
 
@@ -22,6 +23,7 @@ def test():
                      img.save('./gif/{}.png'.format(t))
             if done:
                 break
+    env.close()
             
 if __name__ == '__main__':
     test()
