@@ -44,8 +44,7 @@ class ActorCritic(nn.Module):
         discounted_rewards = (discounted_rewards - discounted_rewards.mean()) / (discounted_rewards.std())
         
         # Calculating the loss of expected rewards :
-        # i.e. grad (Expected[rewards]) = grad (policy(action|theta)* -logprob * Advantage)
-        
+        # grad (Expected[rewards]) = grad (policy(action|theta)* -logprob * Advantage) :
         loss = 0
         for logprob, value, reward in zip(self.logprobs, self.state_values, discounted_rewards):
             advantage = reward - value.item()
