@@ -5,15 +5,29 @@ import torch.optim as optim
 import gym
 
 def train():
-    # Hyperparameters : 
-    env = gym.make('LunarLander-v2')
-    render = True
+    # Defaults parameters:
+    #    gamma = 0.99
+    #    lr = 0.02
+    #    betas = (0.9, 0.999)
+    #    random_seed = 543
+
+    render = False
     gamma = 0.99
-    policy = ActorCritic()
-    optimizer = optim.Adam(policy.parameters(), lr=0.03, betas=(0.81, 0.999))
+    lr = 0.02
+    betas = (0.9, 0.999)
+    random_seed = 543
     
-    for i_episode in range(1, 10000):
-        running_reward = 0
+    torch.manual_seed(random_seed)
+    
+    env = gym.make('LunarLander-v2')
+    env.seed(random_seed)
+    
+    policy = ActorCritic()
+    optimizer = optim.Adam(policy.parameters(), lr=lr, betas=betas)
+    print(lr,betas)
+    
+    running_reward = 0
+    for i_episode in range(0, 10000):
         state = env.reset()
         for t in range(10000):
             action = policy(state)
@@ -24,24 +38,28 @@ def train():
                 env.render()
             if done:
                 break
-        
+                    
         # Updating the policy :
         optimizer.zero_grad()
         loss = policy.calculateLoss(gamma)
         loss.backward()
-        optimizer.step()
+        optimizer.step()        
         policy.clearMemory()
         
-        if i_episode > 1000:
-            torch.save(policy.state_dict(), './preTrained/LunarLander.pth')
-            
-        if i_episode % 10 == 0:
-            print('Episode {}\tlength: {}'.format(
-                i_episode, t))
-        if running_reward > 1000:
-            print("Solved!")
+        # saving the model if episodes > 999 OR avg reward > 200 
+        if i_episode > 999:
+            torch.save(policy.state_dict(), './preTrained/LunarLander_{}_{}_{}.pth'.format(lr, betas[0], betas[1]))
+        
+        if running_reward > 4000:
+            torch.save(policy.state_dict(), './preTrained/LunarLander_{}_{}_{}.pth'.format(lr, betas[0], betas[1]))
+            print("########## Solved! ##########")
             test()
             break
-
+        
+        if i_episode % 20 == 0:
+            running_reward = running_reward/20
+            print('Episode {}\tlength: {}\treward: {}'.format(i_episode, t, running_reward))
+            running_reward = 0
+            
 if __name__ == '__main__':
     train()
