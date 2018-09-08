@@ -4,7 +4,9 @@ PyTorch implementation of actor critic policy gradient algorithm for Lunar Lande
 
 Dependencies:
 -OpenAI gym
+
 -PyTorch 0.4.1
+
 -PIL
 
 -> Hyperparameters can be changed by editing them in respective files
