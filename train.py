@@ -11,7 +11,7 @@ def train():
     #    betas = (0.9, 0.999)
     #    random_seed = 543
 
-    render = False
+    render = False # renders after 1000 episodes
     gamma = 0.99
     lr = 0.02
     betas = (0.9, 0.999)
