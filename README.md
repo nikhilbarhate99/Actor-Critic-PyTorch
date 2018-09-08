@@ -14,7 +14,7 @@ The algorithm used is actor-critic (policy gradient), more info : http://rail.ee
 
 -> Hyperparameters can be changed by editing them in respective files
 
--> To train : run train.py
+-> To train : run train.py [Converges within 1500 episodes]
 
 -> To test a pretrained model : run test.py
 
