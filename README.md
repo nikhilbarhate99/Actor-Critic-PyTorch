@@ -1,7 +1,7 @@
 # Actor-Critic
 
 Solution for Lunar Lander environment v2 of Open AI gym.
-The algorithm used is actor-critic (policy gradient), more info:http://rail.eecs.berkeley.edu/deeprlcourse-fa17/f17docs/lecture_5_actor_critic_pdf.pdf
+The algorithm used is actor-critic (policy gradient), more info : http://rail.eecs.berkeley.edu/deeprlcourse-fa17/f17docs/lecture_5_actor_critic_pdf.pdf
 
 -> Dependencies:
 
