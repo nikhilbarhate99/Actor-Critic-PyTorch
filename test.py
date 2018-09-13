@@ -3,11 +3,11 @@ import torch
 import gym
 from PIL import Image
 
-def test(n_episodes=10):
+def test(n_episodes=5, name='LunarLander_TWO.pth'):
     env = gym.make('LunarLander-v2')
     policy = ActorCritic()
     
-    policy.load_state_dict(torch.load('./preTrained/LunarLander_TWO.pth'))
+    policy.load_state_dict(torch.load('./preTrained/{}'.format(name)))
     
     render = True
     save_gif = False
