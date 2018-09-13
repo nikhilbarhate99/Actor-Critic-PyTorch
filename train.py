@@ -11,7 +11,7 @@ def train():
     #    betas = (0.9, 0.999)
     #    random_seed = 543
 
-    render = False # renders after 1000 episodes
+    render = False
     gamma = 0.99
     lr = 0.02
     betas = (0.9, 0.999)
@@ -47,13 +47,13 @@ def train():
         policy.clearMemory()
         
         # saving the model if episodes > 999 OR avg reward > 200 
-        if i_episode > 999:
-            torch.save(policy.state_dict(), './preTrained/LunarLander_{}_{}_{}.pth'.format(lr, betas[0], betas[1]))
+        #if i_episode > 999:
+        #    torch.save(policy.state_dict(), './preTrained/LunarLander_{}_{}_{}.pth'.format(lr, betas[0], betas[1]))
         
         if running_reward > 4000:
             torch.save(policy.state_dict(), './preTrained/LunarLander_{}_{}_{}.pth'.format(lr, betas[0], betas[1]))
             print("########## Solved! ##########")
-            test()
+            test(name='LunarLander_{}_{}_{}.pth'.format(lr, betas[0], betas[1]))
             break
         
         if i_episode % 20 == 0:
