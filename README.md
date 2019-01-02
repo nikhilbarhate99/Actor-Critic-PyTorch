@@ -23,4 +23,4 @@ more info : http://rail.eecs.berkeley.edu/deeprlcourse-fa17/f17docs/lecture_5_ac
 -> To test a pretrained model : run test.py
 
 
-![alt-text](https://github.com/nikhilbarhate99/Actor-Critic/blob/master/gif/1.gif)
+![alt-text](https://github.com/nikhilbarhate99/Actor-Critic/blob/master/gif/gif3.gif)
